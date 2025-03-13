@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Video Website</title>
+</head>
+<body>
+    <div class="header">
+        <h1>Car Video Website</h1>
+        <div class="auth-buttons">
+            <a href="login.html">Login</a>
+            <a href="signup.html">Sign Up</a>
+        </div>
+        <div class="profile" style="display: none;">
+            <a href="profile.html" id="username"></a>
+            <a href="#" onclick="logout()">Logout</a>
+        </div>
+    </div>
+
+    <div class="navbar">
+        <a href="#Maintenance" onclick="scrollToSection(event, 'Maintenance')">Maintenance</a>
+        <a href="#Speedtest" onclick="scrollToSection(event, 'Speedtest')">SpeedTest</a>
+        <a href="#Wrapping" onclick="scrollToSection(event, 'Wrapping')">Wrapping</a>
+    </div>
+
+    <div class="container">
+        <div class="category">
+            <h2 id="Maintenance">Maintenance</h2>
+            <div class="video-list" id="Maintenance">
+                <a href="video.html?video=Maintenance.mp4">
+                    <video class="video-thumbnail" controls>
+                        <source src="Maintenance.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </a>
+                <a>
+                    <video class="video-thumbnail" controls>
+                        <source src="path/to/maintenance-video2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </a>
+                <a>
+                    <video class="video-thumbnail" controls>
+                        <source src="path/to/maintenance-video2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </a>
+            </div>
+        </div>
+        <div class="category">
+            <h2 id="Speedtest">SpeedTest</h2>
+            <div class="video-list" id="Speedtest">
+                <a href="video.html?video=SpeedTest.mp4">
+                    <video class="video-thumbnail" controls>
+                        <source src="SpeedTest.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </a>
+                <a>
+                    <video class="video-thumbnail" controls>
+                        <source src="path/to/speedtest-video2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </a>
+                <a>
+                    <video class="video-thumbnail" controls>
+                        <source src="path/to/speedtest-video2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </a>
+            </div>
+        </div>
+        <div class="category">
+            <h2 id="Wrapping">Wrapping</h2>
+            <div class="video-list" id="Wrapping">
+                <a href="video.html?video=Wrap.mp4">
+                    <video class="video-thumbnail" controls>
+                        <source src="Wrap.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </a>
+                <a>
+                    <video class="video-thumbnail" controls>
+                        <source src="path/to/wrapping-video2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </a>
+                <a>
+                    <video class="video-thumbnail" controls>
+                        <source src="path/to/wrapping-video2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </a>
+            </div>
+        </div>
+    </div>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0px;
+            scroll-behavior: smooth;
+        }
+        .header {
+            background-color: #060816;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            position: relative;
+        }
+        .header h1 {
+            margin: 0;  
+        }
+        .header .auth-buttons,
+        .header .profile {
+            display: flex;
+            gap: 10px;
+        }
+        .header .auth-buttons a,
+        .header .profile a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 40px;
+            background-color: #333;
+            border-radius: 5px;
+        }
+        .header .auth-buttons a:hover,
+        .header .profile a:hover {
+            background-color: #575757;
+        }
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+            padding: 10px 0;
+            position: sticky;
+            top: 0px; 
+            width: 100%;
+            z-index: 999;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        .navbar a:hover {
+            background-color: #575757;
+        }
+        .container {
+            margin: 0px;
+            padding: 20px;
+        }
+        .category {
+            margin-bottom: 50px;
+        }
+        .category h2 {
+            background-color: #ddd;
+            padding: 10px;
+            cursor: pointer;
+            position: sticky;
+            top: 50px;
+            z-index: 998;
+        }
+        .video-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            padding: 350px;
+            justify-content: center;
+            
+        }
+        .video-thumbnail {
+            width: 250px;
+            height: 180px;
+            cursor: pointer;
+            border-radius: 25px;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const isLoggedIn = localStorage.getItem("isLoggedIn");
+            const username = localStorage.getItem("username");
+
+            if (isLoggedIn) {
+                document.querySelector(".auth-buttons").style.display = "none";
+                document.querySelector(".profile").style.display = "flex";
+                document.getElementById("username").textContent = username;
+            } else {
+                document.querySelector(".auth-buttons").style.display = "flex";
+                document.querySelector(".profile").style.display = "none";
+            }
+        });
+
+        function logout() {
+            localStorage.removeItem("isLoggedIn");
+            localStorage.removeItem("username");
+            window.location.reload();
+        }
+        function scrollToSection(event, sectionId) {
+            event.preventDefault();
+            const section = document.getElementById(sectionId);
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .header {
+            width: 100%;
+            background-color: #ff0000;
+            padding: 15px;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        .header a {
+            color: white;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .header a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            width: 80%;
+            max-width: 800px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 100px;
+            text-align: center;
+        }
+        video {
+            width: 300px;
+            border-radius: 10px;
+        }
+        .actions {
+            margin-top: 10px;
+        }
+        .actions button {
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .like { background-color: #0f9d58; color: white; }
+        .dislike { background-color: #d32f2f; color: white; }
+        .comment-section {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .comment-box {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .comment-button {
+            background-color: #007bff;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .comment-list {
+            margin-top: 15px;
+        }
+        .comment {
+            background: #f1f1f1;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+        .like-count, .dislike-count {
+            display: inline-block;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        let likeCount = 0;
+        let dislikeCount = 0;
+
+        function postComment(commentText = null) {
+            let commentInput = document.getElementById("commentInput");
+            if (!commentText) {
+                commentText = commentInput.value.trim();
+            }
+            if (commentText !== "") {
+                let commentList = document.getElementById("commentList");
+                let newComment = document.createElement("div");
+                newComment.classList.add("comment");
+                newComment.textContent = commentText;
+                commentList.appendChild(newComment);
+                commentInput.value = "";
+            }
+        }
+
+        function updateLikeCount() {
+            likeCount++;
+            document.getElementById("likeCount").textContent = likeCount;
+        }
+
+        function updateDislikeCount() {
+            dislikeCount++;
+            document.getElementById("dislikeCount").textContent = dislikeCount;
+        }
+
+        // Function to get video URL from query parameters
+        function getVideoUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get("video");
+        }
+
+        // Set video source dynamically
+        document.addEventListener("DOMContentLoaded", function () {
+            let videoSrc = getVideoUrl();
+            if (videoSrc) {
+                let videoElement = document.querySelector("video source");
+                videoElement.src = videoSrc;
+                document.querySelector("video").load();
+            }
+            // Add default comment
+            postComment("nice");
+        });
+    </script>
+</head>
+<body>
+    <div class="header">
+        <a href="homepage.html">CarVideoShare</a>
+    </div>
+    <div class="container">
+        <video controls>
+            <source src="" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="actions">
+            <button class="like" onclick="updateLikeCount()">Like <span id="likeCount" class="like-count">0</span></button>
+            <button class="dislike" onclick="updateDislikeCount()">Dislike <span id="dislikeCount" class="dislike-count">0</span></button>
+        </div>
+        <div class="comment-section">
+            <h3>Comments</h3>
+            <textarea id="commentInput" class="comment-box" placeholder="Write a comment..."></textarea>
+            <button class="comment-button" onclick="postComment()">Post Comment</button>
+            <div id="commentList" class="comment-list"></div>
+        </div>
+    </div>
+</body>
+</html>
