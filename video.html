@@ -5,6 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Page</title>
     <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header">
+        <a href="homepage.html">CarVideoShare</a>
+    </div>
+    <div class="container">
+        <h2 id="videoTitle">Video Title</h2> <!-- Added video title element -->
+        <video controls>
+            <source src="" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="actions">
+            <button class="like" onclick="updateLikeCount()">Like <span id="likeCount" class="like-count">0</span></button>
+            <button class="dislike" onclick="updateDislikeCount()">Dislike <span id="dislikeCount" class="dislike-count">0</span></button>
+        </div>
+        <div class="comment-section">
+            <h3>Comments</h3>
+            <textarea id="commentInput" class="comment-box" placeholder="Write a comment..."></textarea>
+            <button class="comment-button" onclick="postComment()">Post Comment</button>
+            <div id="commentList" class="comment-list"></div>
+        </div>
+    </div>
+    
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,7 +40,7 @@
         }
         .header {
             width: 100%;
-            background-color: #ff0000;
+            background-color: #060816;
             padding: 15px;
             text-align: center;
             position: fixed;
@@ -87,10 +110,23 @@
             padding: 10px;
             border-radius: 5px;
             margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        .comment img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
         }
         .like-count, .dislike-count {
             display: inline-block;
             margin-left: 10px;
+            font-weight: bold;
+        }
+        #videoTitle {
+            margin-bottom: 20px;
+            font-size: 24px;
             font-weight: bold;
         }
     </style>
@@ -107,8 +143,19 @@
                 let commentList = document.getElementById("commentList");
                 let newComment = document.createElement("div");
                 newComment.classList.add("comment");
-                newComment.textContent = commentText;
-                commentList.appendChild(newComment);
+
+                // Add profile picture and comment text
+                let profilePic = document.createElement("img");
+                profilePic.src = "default-profile.jpg"; // Replace with actual profile picture URL
+                profilePic.alt = "Profile Picture";
+
+                let commentTextElement = document.createElement("div");
+                commentTextElement.textContent = commentText;
+
+                newComment.appendChild(profilePic);
+                newComment.appendChild(commentTextElement);
+
+                commentList.insertBefore(newComment, commentList.firstChild);
                 commentInput.value = "";
             }
         }
@@ -129,38 +176,29 @@
             return urlParams.get("video");
         }
 
-        // Set video source dynamically
+        // Function to get video title from query parameters
+        function getVideoTitle() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get("title");
+        }
+
+        // Set video source and title dynamically
         document.addEventListener("DOMContentLoaded", function () {
             let videoSrc = getVideoUrl();
+            let videoTitle = getVideoTitle();
             if (videoSrc) {
                 let videoElement = document.querySelector("video source");
                 videoElement.src = videoSrc;
                 document.querySelector("video").load();
             }
+            if (videoTitle) {
+                document.getElementById("videoTitle").textContent = videoTitle;
+            }
             // Add default comment
             postComment("nice");
         });
     </script>
-</head>
-<body>
-    <div class="header">
-        <a href="homepage.html">CarVideoShare</a>
-    </div>
-    <div class="container">
-        <video controls>
-            <source src="" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <div class="actions">
-            <button class="like" onclick="updateLikeCount()">Like <span id="likeCount" class="like-count">0</span></button>
-            <button class="dislike" onclick="updateDislikeCount()">Dislike <span id="dislikeCount" class="dislike-count">0</span></button>
-        </div>
-        <div class="comment-section">
-            <h3>Comments</h3>
-            <textarea id="commentInput" class="comment-box" placeholder="Write a comment..."></textarea>
-            <button class="comment-button" onclick="postComment()">Post Comment</button>
-            <div id="commentList" class="comment-list"></div>
-        </div>
-    </div>
+
+
 </body>
 </html>

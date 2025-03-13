@@ -3,13 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <title>Car Video Website</title>
 </head>
 <body>
     <div class="header">
         <h1>Car Video Website</h1>
+
+        <a class="uploadBtn" href="uploadVideo.html">Upload Video</a>
+        
         <div class="auth-buttons">
-            <a href="login.html">Login</a>
+            <a href="login.html">Login</a> 
             <a href="signup.html">Sign Up</a>
         </div>
         <div class="profile" style="display: none;">
@@ -22,76 +27,108 @@
         <a href="#Maintenance" onclick="scrollToSection(event, 'Maintenance')">Maintenance</a>
         <a href="#Speedtest" onclick="scrollToSection(event, 'Speedtest')">SpeedTest</a>
         <a href="#Wrapping" onclick="scrollToSection(event, 'Wrapping')">Wrapping</a>
+        <div>
+            <ion-icon name="search"></ion-icon>
+            <input type="text" placholder="Search" class="search-bar">
+        </div>
+        
     </div>
 
     <div class="container">
         <div class="category">
             <h2 id="Maintenance">Maintenance</h2>
             <div class="video-list" id="Maintenance">
-                <a href="video.html?video=Maintenance.mp4">
-                    <video class="video-thumbnail" controls>
-                        <source src="Maintenance.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </a>
-                <a>
-                    <video class="video-thumbnail" controls>
-                        <source src="path/to/maintenance-video2.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </a>
-                <a>
-                    <video class="video-thumbnail" controls>
-                        <source src="path/to/maintenance-video2.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </a>
+                <div class="video-item">
+                    <h3 id="VideoTItle">Maintenance Video 1</h3>
+                    <a href="video.html?video=Maintenance.mp4">
+                        <video class="video-thumbnail" controls>
+                            <source src="Maintenance.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </a>
+                </div>
+                <div class="video-item">
+                    <h3>Maintenance Video 2</h3>
+                    <a>
+                        <video class="video-thumbnail" controls>
+                            <source src="path/to/maintenance-video2.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </a>
+                </div>
+                <div class="video-item">
+                    <h3>Maintenance Video 3</h3>
+                    <a>
+                        <video class="video-thumbnail" controls>
+                            <source src="path/to/maintenance-video2.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </a>
+                </div>
             </div>
         </div>
         <div class="category">
             <h2 id="Speedtest">SpeedTest</h2>
             <div class="video-list" id="Speedtest">
-                <a href="video.html?video=SpeedTest.mp4">
-                    <video class="video-thumbnail" controls>
-                        <source src="SpeedTest.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </a>
-                <a>
-                    <video class="video-thumbnail" controls>
-                        <source src="path/to/speedtest-video2.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </a>
-                <a>
-                    <video class="video-thumbnail" controls>
-                        <source src="path/to/speedtest-video2.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </a>
+                <div class="video-item">
+                    <h3>SpeedTest Video 1</h3>
+                    <a href="video.html?video=SpeedTest.mp4">
+                        <video class="video-thumbnail" controls>
+                            <source src="SpeedTest.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </a>
+                </div>
+                <div class="video-item">
+                    <h3>SpeedTest Video 2</h3>
+                    <a>
+                        <video class="video-thumbnail" controls>
+                            <source src="path/to/speedtest-video2.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </a>
+                </div>
+                <div class="video-item">
+                    <h3>SpeedTest Video 3</h3>
+                    <a>
+                        <video class="video-thumbnail" controls>
+                            <source src="path/to/speedtest-video2.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </a>
+                </div>
             </div>
         </div>
         <div class="category">
             <h2 id="Wrapping">Wrapping</h2>
             <div class="video-list" id="Wrapping">
-                <a href="video.html?video=Wrap.mp4">
-                    <video class="video-thumbnail" controls>
-                        <source src="Wrap.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </a>
-                <a>
-                    <video class="video-thumbnail" controls>
-                        <source src="path/to/wrapping-video2.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </a>
-                <a>
-                    <video class="video-thumbnail" controls>
-                        <source src="path/to/wrapping-video2.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </a>
+                <div class="video-item">
+                    <h3>Wrapping Video 1</h3>
+                    <a href="video.html?video=Wrap.mp4">
+                        <video class="video-thumbnail" controls>
+                            <source src="Wrap.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </a>
+                </div>
+                <div class="video-item">
+                    <h3>Wrapping Video 2</h3>
+                    <a>
+                        <video class="video-thumbnail" controls>
+                            <source src="path/to/wrapping-video2.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </a>
+                </div>
+                <div class="video-item">
+                    <h3>Wrapping Video 3</h3>
+                    <a>
+                        <video class="video-thumbnail" controls>
+                            <source src="path/to/wrapping-video2.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -114,6 +151,7 @@
             width: 100%;
             z-index: 1000;
             position: relative;
+            
         }
         .header h1 {
             margin: 0;  
@@ -131,7 +169,7 @@
             background-color: #333;
             border-radius: 5px;
         }
-        .header .auth-buttons a:hover,
+        .header .auth-buttons a:hover ,
         .header .profile a:hover {
             background-color: #575757;
         }
@@ -182,6 +220,33 @@
             height: 180px;
             cursor: pointer;
             border-radius: 25px;
+        }
+        .video-item {
+            margin-bottom: 20px;
+        }
+        .video-item h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+        }
+        .search-bar {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-left: 10px;
+        }
+        .uploadBtn{
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-left: 28cm;
         }
     </style>
     <script>
